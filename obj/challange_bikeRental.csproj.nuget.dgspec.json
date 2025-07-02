@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\actdigital\\aluguelBike\\challange_bikeRental\\challange_bikeRental.csproj": {}
+    "C:\\Users\\habyn\\aluguelBike\\MotocycleRental\\challange_bikeRental.csproj": {}
   },
   "projects": {
-    "C:\\Users\\actdigital\\aluguelBike\\challange_bikeRental\\challange_bikeRental.csproj": {
+    "C:\\Users\\habyn\\aluguelBike\\MotocycleRental\\challange_bikeRental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\actdigital\\aluguelBike\\challange_bikeRental\\challange_bikeRental.csproj",
+        "projectUniqueName": "C:\\Users\\habyn\\aluguelBike\\MotocycleRental\\challange_bikeRental.csproj",
         "projectName": "challange_bikeRental",
-        "projectPath": "C:\\Users\\actdigital\\aluguelBike\\challange_bikeRental\\challange_bikeRental.csproj",
-        "packagesPath": "C:\\Users\\actdigital\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\actdigital\\aluguelBike\\challange_bikeRental\\obj\\",
+        "projectPath": "C:\\Users\\habyn\\aluguelBike\\MotocycleRental\\challange_bikeRental.csproj",
+        "packagesPath": "C:\\Users\\habyn\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\habyn\\aluguelBike\\MotocycleRental\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\actdigital\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\habyn\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -50,6 +50,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.4.0, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

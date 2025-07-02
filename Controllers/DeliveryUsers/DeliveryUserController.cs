@@ -5,18 +5,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace challange_bikeRental.Controllers.DeliveryUsers
 {
+    /// <summary>
+    /// Controller responsible for handling delivery user related operations.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class DeliveryUserController : ControllerBase
     {
         private readonly DeliveryUserService _deliveryUserService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeliveryUserController"/> class.
+        /// </summary>
+        /// <param name="deliveryUserService">The delivery user service to be used by this controller.</param>
         public DeliveryUserController(DeliveryUserService deliveryUserService)
         {
             _deliveryUserService = deliveryUserService;
         }
 
-        // Endpoint para cadastrar um novo entregador
+        /// <summary>
+        /// Registers a new delivery user.
+        /// </summary>
+        /// <param name="user">The user to be registered.</param>
+        /// <returns>An ActionResult indicating the result of the operation.</returns>
         [HttpPost]
         public async Task<ActionResult> CreateUser([FromBody] User user)
         {
@@ -34,12 +45,19 @@ namespace challange_bikeRental.Controllers.DeliveryUsers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [HttpPost("{identificador}/imagem-cnh")]
-        public async Task<IActionResult> UploadCnhImage(string identificador, [FromBody] UpdateCnhDto dto)
+
+        /// <summary>
+        /// Uploads the CNH image for a delivery user.
+        /// </summary>
+        /// <param name="id">The identifier of the delivery user.</param>
+        /// <param name="dto">The DTO containing the CNH image data.</param>
+        /// <returns>An IActionResult indicating the result of the operation.</returns>
+        [HttpPost("{id}/imagem-cnh")]
+        public async Task<IActionResult> UploadCnhImage(string id, [FromBody] UpdateCnhDto dto)
         {
             try
             {
-                dto.Id = identificador;
+                dto.Id = id;
                 await _deliveryUserService.UpdateCnhAsync(dto);
                 return Ok(new { message = "Imagem enviada com sucesso!" });
             }

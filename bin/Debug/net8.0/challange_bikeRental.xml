@@ -1,0 +1,918 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>challange_bikeRental</name>
+    </assembly>
+    <members>
+        <member name="T:challange_bikeRental.Config.db.MongoDBSettings">
+            <summary>
+            Represents the settings required to connect to a MongoDB database.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Config.db.MongoDBSettings.DatabaseName">
+            <summary>
+            Gets or sets the connection string used to connect to the MongoDB database.
+            </summary>
+            <summary>
+            Gets or sets the name of the MongoDB database.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Config.db.MongoDBSettings.ConnectionString">
+            <summary>
+            Gets or sets the connection string used to connect to the MongoDB database.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Config.Rabbit.RabbitMqSettings">
+            <summary>
+            Represents the settings required to configure RabbitMQ connections.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Config.Rabbit.RabbitMqSettings.HostName">
+            <summary>
+            Gets or sets the host name used to connect to RabbitMQ.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Config.Rabbit.RabbitMqSettings.Port">
+            <summary>
+            Gets or sets the port number used to connect to RabbitMQ.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Config.Rabbit.RabbitMqSettings.QueueName">
+            <summary>
+            Gets or sets the name of the RabbitMQ queue.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Controllers.Bikes.BikeController">
+            <summary>
+            Controller for managing bike-related operations.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.#ctor(challange_bikeRental.Services.Bikes.BikeService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Controllers.Bikes.BikeController"/> class with the specified <see cref="T:challange_bikeRental.Services.Bikes.BikeService"/>.
+            </summary>
+            <param name="bikeService">The service used to manage bikes.</param>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.GetAll(System.String)">
+            <summary>
+            Gets all bikes or a specific bike by its plate if the 'placa' query parameter is provided.
+            </summary>
+            <param name="placa">The plate of the bike to search for (optional).</param>
+            <returns>A list of bikes or a single bike if 'placa' is specified.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.GetById(System.String)">
+            <summary>
+            Gets a bike by its identifier.
+            </summary>
+            <param name="id">The identifier of the bike to retrieve.</param>
+            <returns>The bike with the specified identifier, or NotFound if it does not exist.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.Create(challange_bikeRental.Models.Bike)">
+            <summary>
+            Creates a new bike.
+            </summary>
+            <param name="bike">The bike to create.</param>
+            <returns>A response indicating the result of the creation operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.UpdatePlaca(System.String,challange_bikeRental.Models.DTOs.UpdatePlacaDto)">
+            <summary>
+            Updates the plate of a bike by its identifier.
+            </summary>
+            <param name="id">The identifier of the bike to update.</param>
+            <param name="placaObj">The object containing the new plate value.</param>
+            <returns>NoContent if successful, NotFound if the bike does not exist, or Conflict if the plate is duplicated.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.Bikes.BikeController.Delete(System.String)">
+            <summary>
+            Deletes a bike by its identifier.
+            </summary>
+            <param name="id">The identifier of the bike to delete.</param>
+            <returns>NoContent if successful, NotFound if the bike does not exist, or BadRequest on error.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Controllers.DeliveryUsers.DeliveryUserController">
+            <summary>
+            Controller responsible for handling delivery user related operations.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.DeliveryUsers.DeliveryUserController.#ctor(challange_bikeRental.Services.DeliveryUsers.DeliveryUserService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Controllers.DeliveryUsers.DeliveryUserController"/> class.
+            </summary>
+            <param name="deliveryUserService">The delivery user service to be used by this controller.</param>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.DeliveryUsers.DeliveryUserController.CreateUser(challange_bikeRental.Models.User)">
+            <summary>
+            Registers a new delivery user.
+            </summary>
+            <param name="user">The user to be registered.</param>
+            <returns>An ActionResult indicating the result of the operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.DeliveryUsers.DeliveryUserController.UploadCnhImage(System.String,challange_bikeRental.Models.DTOs.UpdateCnhDto)">
+            <summary>
+            Uploads the CNH image for a delivery user.
+            </summary>
+            <param name="id">The identifier of the delivery user.</param>
+            <param name="dto">The DTO containing the CNH image data.</param>
+            <returns>An IActionResult indicating the result of the operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController">
+            <summary>
+            Controller for managing rented motorcycles.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController.#ctor(challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController"/> class.
+            </summary>
+            <param name="rentedMotorcycleService">The service for managing rented motorcycles.</param>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController.CreateRental(challange_bikeRental.Models.RentedBikes)">
+            <summary>
+            Creates a new motorcycle rental.
+            </summary>
+            <param name="rental">The rental information to create.</param>
+            <returns>The created rental information with a location header.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController.GetRentalById(System.String)">
+            <summary>
+            Retrieves a rental by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the rental.</param>
+            <returns>The rental information if found; otherwise, NotFound.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Controllers.RentedMotorcycles.RentedMotorcycleController.UpdatePlaca(System.String,challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto)">
+            <summary>
+            Updates the rental information for a motorcycle by its ID.
+            </summary>
+            <param name="id">The ID of the rental to update.</param>
+            <param name="rentalDto">The updated rental data.</param>
+            <returns>NoContent if successful, NotFound if the rental does not exist, or Conflict if there is a duplicate plate.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Models.Bike">
+            <summary>
+            Represents a bike available for rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.Bike.Id">
+            <summary>
+            Gets or sets the unique identifier for the bike.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.Bike.Plate">
+            <summary>
+            Gets or sets the plate number of the bike.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.Bike.Model">
+            <summary>
+            Gets or sets the model of the bike.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.Bike.FabricationYear">
+            <summary>
+            Gets or sets the fabrication year of the bike.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.User">
+            <summary>
+            Represents a user in the motorcycle rental system.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.Id">
+            <summary>
+            Gets or sets the unique identifier for the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.Name">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.Cnpj">
+            <summary>
+            Gets or sets the cnpj of the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.BirthDate">
+            <summary>
+            Gets or sets the birth date of the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.LicenseNumber">
+            <summary>
+            Gets or sets the license number of the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.LicenseType">
+            <summary>
+            Gets or sets the license type of the user.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.LicenseImage">
+            <summary>
+            Gets or sets the image of the user's license.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.User.RentedMotocycle">
+            <summary>
+            Gets or sets the identifier of the rented motorcycle.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.DTOs.UpdatePlacaDto">
+            <summary>
+            Data Transfer Object for updating the plate information of a bike.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.DTOs.UpdatePlacaDto.Plate">
+            <summary>
+            Gets or sets the plate information of the bike.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.DTOs.UpdateCnhDto">
+            <summary>
+            DTO for updating CNH (driver's license) information.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.DTOs.UpdateCnhDto.Id">
+            <summary>
+            Gets or sets the identifier for the motorcycle rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.DTOs.UpdateCnhDto.LicenseImage">
+            <summary>
+            Gets or sets the image of the CNH (driver's license).
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto">
+            <summary>
+            DTO for updating a rented motorcycle, including its identifier and return date.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto.Id">
+            <summary>
+            Gets or sets the identifier of the rented motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto.ReturnDate">
+            <summary>
+            Gets or sets the return date of the rented motorcycle.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.LogsMotorcycleCreated">
+            <summary>
+            Represents a rented motorcycle, including rental details and associated user and motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.LogsMotorcycleCreated.Id">
+            <summary>
+            Gets or sets the unique identifier for the rented motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.LogsMotorcycleCreated.Log">
+            <summary>
+            Gets or sets the identifier of the delivery user associated with the rented motorcycle.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Models.RentedBikes">
+            <summary>
+            Represents a rented motorcycle, including rental details and associated user and motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.Id">
+            <summary>
+            Gets or sets the unique identifier for the rented motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.DailyRate">
+            <summary>
+            Gets or sets the daily rental rate for the motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.DeliveryUser">
+            <summary>
+            Gets or sets the identifier of the delivery user associated with the rented motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.MotocycleId">
+            <summary>
+            Gets or sets the identifier of the motorcycle associated with the rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.StartDate">
+            <summary>
+            Gets or sets the start date of the rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.EndDate">
+            <summary>
+            Gets or sets the end date of the rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.ForcastDate">
+            <summary>
+            Gets or sets the forecasted end date of the rental.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.ReturnDate">
+            <summary>
+            Gets or sets the return date of the rented motorcycle.
+            </summary>
+        </member>
+        <member name="P:challange_bikeRental.Models.RentedBikes.Plan">
+            <summary>
+            Gets or sets the rental plan for the motorcycle.
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.Bikes.BikeRepository">
+            <summary>
+            Repository for managing Bike entities in the MongoDB database.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.#ctor(Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.db.MongoDBSettings},MongoDB.Driver.IMongoClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Repositories.Bikes.BikeRepository"/> class.
+            </summary>
+            <param name="settings">The MongoDB settings.</param>
+            <param name="mongoClient">The MongoDB client.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.GetAllAsync">
+            <summary>
+            Retrieves all bikes from the collection asynchronously.
+            </summary>
+            <returns>A list of all <see cref="T:challange_bikeRental.Models.Bike"/> objects.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.GetByIdAsync(System.String)">
+            <summary>
+            Retrieves a bike by its unique identifier asynchronously.
+            </summary>
+            <param name="identificador">The unique identifier of the bike.</param>
+            <returns>The <see cref="T:challange_bikeRental.Models.Bike"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.GetBikeByPlacaAsync(System.String)">
+            <summary>
+            Retrieves a bike by its license plate asynchronously.
+            </summary>
+            <param name="placa">The license plate of the bike.</param>
+            <returns>The <see cref="T:challange_bikeRental.Models.Bike"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.CreateAsync(challange_bikeRental.Models.Bike)">
+            <summary>
+            Inserts a new <see cref="T:challange_bikeRental.Models.Bike"/> into the collection asynchronously.
+            </summary>
+            <param name="bike">The <see cref="T:challange_bikeRental.Models.Bike"/> object to insert.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.UpdateBikeAsync(challange_bikeRental.Models.Bike)">
+            <summary>
+            Updates the specified <see cref="T:challange_bikeRental.Models.Bike"/> in the collection asynchronously.
+            </summary>
+            <param name="bike">The <see cref="T:challange_bikeRental.Models.Bike"/> object to update.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.BikeRepository.DeleteAsync(System.String)">
+            <summary>
+            Deletes a bike from the collection by its unique identifier asynchronously.
+            </summary>
+            <param name="identificador">The unique identifier of the bike to delete.</param>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.Bikes.IBikeRepository">
+            <summary>
+            Interface for bike repository operations.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.GetAllAsync">
+            <summary>
+            Retrieves all bikes asynchronously.
+            </summary>
+            <returns>A task that represents the asynchronous operation. The task result contains a list of bikes.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.GetByIdAsync(System.String)">
+            <summary>
+            Retrieves a bike by its unique identifier asynchronously.
+            </summary>
+            <param name="id">The unique identifier of the bike.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.GetBikeByPlacaAsync(System.String)">
+            <summary>
+            Retrieves a bike by its license plate asynchronously.
+            </summary>
+            <param name="placa">The license plate of the bike.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.CreateAsync(challange_bikeRental.Models.Bike)">
+            <summary>
+            Creates a new bike asynchronously.
+            </summary>
+            <param name="bike">The bike to create.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.UpdateBikeAsync(challange_bikeRental.Models.Bike)">
+            <summary>
+            Updates an existing bike asynchronously.
+            </summary>
+            <param name="bike">The bike to update.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Bikes.IBikeRepository.DeleteAsync(System.String)">
+            <summary>
+            Deletes a bike by its unique identifier asynchronously.
+            </summary>
+            <param name="id">The unique identifier of the bike to delete.</param>
+            <returns>A task that represents the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository">
+            <summary>
+            Repository for managing delivery user data in the MongoDB database.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.#ctor(Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.db.MongoDBSettings},MongoDB.Driver.IMongoClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository"/> class.
+            </summary>
+            <param name="settings">The MongoDB settings.</param>
+            <param name="mongoClient">The MongoDB client.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.GetAllUsersAsync">
+            <summary>
+            Retrieves all delivery users from the database asynchronously.
+            </summary>
+            <returns>A list of all <see cref="T:challange_bikeRental.Models.User"/> objects.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.GetUserByIdAsync(System.String)">
+            <summary>
+            Retrieves a delivery user by their unique identifier asynchronously.
+            </summary>
+            <param name="identificador">The unique identifier of the user.</param>
+            <returns>The <see cref="T:challange_bikeRental.Models.User"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.GetUserByCnpjAsync(System.String)">
+            <summary>
+            Retrieves a delivery user by their CNPJ asynchronously.
+            </summary>
+            <param name="cnpj">The CNPJ of the user.</param>
+            <returns>The <see cref="T:challange_bikeRental.Models.User"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.GetUserByCnhAsync(System.String)">
+            <summary>
+            Retrieves a delivery user by their CNH (driver's license number) asynchronously.
+            </summary>
+            <param name="numeroCnh">The CNH (driver's license number) of the user.</param>
+            <returns>The <see cref="T:challange_bikeRental.Models.User"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.CreateUserAsync(challange_bikeRental.Models.User)">
+            <summary>
+            Creates a new delivery user in the database asynchronously.
+            </summary>
+            <param name="user">The <see cref="T:challange_bikeRental.Models.User"/> object to create.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.DeliveryUserRepository.UpdateUserCnhAsync(challange_bikeRental.Models.DTOs.UpdateCnhDto)">
+            <summary>
+            Updates the CNH (driver's license image) of a delivery user asynchronously.
+            </summary>
+            <param name="updateDto">The DTO containing the user ID and new license image.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the user is not found.</exception>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository">
+            <summary>
+            Defines methods for managing delivery user data in the repository.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.CreateUserAsync(challange_bikeRental.Models.User)">
+            <summary>
+            Asynchronously creates a new delivery user in the repository.
+            </summary>
+            <param name="users">The user entity to create.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.GetAllUsersAsync">
+            <summary>
+            Asynchronously retrieves all delivery users from the repository.
+            </summary>
+            <returns>A task representing the asynchronous operation, containing a list of users.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.GetUserByIdAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a delivery user by their unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the user.</param>
+            <returns>A task representing the asynchronous operation, containing the user if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.UpdateUserCnhAsync(challange_bikeRental.Models.DTOs.UpdateCnhDto)">
+            <summary>
+            Asynchronously updates the CNH information of a delivery user.
+            </summary>
+            <param name="updateDto">The DTO containing updated CNH information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.GetUserByCnpjAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a delivery user by their CNPJ.
+            </summary>
+            <param name="cnpj">The CNPJ of the user.</param>
+            <returns>A task representing the asynchronous operation, containing the user if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository.GetUserByCnhAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a delivery user by their CNH number.
+            </summary>
+            <param name="numeroCnh">The CNH number of the user.</param>
+            <returns>A task representing the asynchronous operation, containing the user if found; otherwise, null.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.Logs.ILogsMotorcycleCreatedRepository">
+            <summary>
+            Defines methods for managing rented motorcycles in the repository.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Logs.ILogsMotorcycleCreatedRepository.CreateLogAsync(challange_bikeRental.Models.LogsMotorcycleCreated)">
+            <summary>
+            Creates a new log record for a new motorcycle created.
+            </summary>
+            <param name="log">The rental information to create.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.Logs.LogMotorcycleCreatedRepository">
+            <summary>
+            Repository for managing rented motorcycles.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Logs.LogMotorcycleCreatedRepository.#ctor(Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.db.MongoDBSettings},MongoDB.Driver.IMongoClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Repositories.Logs.LogMotorcycleCreatedRepository"/> class.
+            </summary>
+            <param name="settings">The MongoDB settings.</param>
+            <param name="mongoClient">The MongoDB client.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Logs.LogMotorcycleCreatedRepository.CreateIndexes">
+            <summary>
+            Creates indexes for the logsMotorcycleCreated collection if needed.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.Logs.LogMotorcycleCreatedRepository.CreateLogAsync(challange_bikeRental.Models.LogsMotorcycleCreated)">
+            <summary>
+            Creates a new rental record in the log motorcycles collection.
+            </summary>
+            <param name="log">The rental information to insert.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository">
+            <summary>
+            Defines methods for managing rented motorcycles in the repository.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository.CreateRentalAsync(challange_bikeRental.Models.RentedBikes)">
+            <summary>
+            Creates a new rental record for a rented motorcycle.
+            </summary>
+            <param name="rental">The rental information to create.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository.UpdateUserWithRentedMotorcycleAsync(System.String,System.String)">
+            <summary>
+            Updates the user with the rented motorcycle information.
+            </summary>
+            <param name="entregadorId">The ID of the user (entregador) to update.</param>
+            <param name="motoId">The ID of the motorcycle being rented.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository.GetByIdAsync(System.String)">
+            <summary>
+            Retrieves a rented bike record by its unique identifier.
+            </summary>
+            <param name="id">The unique identifier of the rented bike.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository.GetRentedByMotocycleAsync(System.String)">
+            <summary>
+            Retrieves a rented bike record by the motorcycle's unique identifier.
+            </summary>
+            <param name="motocycleId">The unique identifier of the motorcycle.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository.UpdateRentedAsync(challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto)">
+            <summary>
+            Updates the information of a rented motorcycle.
+            </summary>
+            <param name="updateDto">The DTO containing updated rental information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository">
+            <summary>
+            Repository for managing rented motorcycles.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.#ctor(Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.db.MongoDBSettings},MongoDB.Driver.IMongoClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository"/> class.
+            </summary>
+            <param name="settings">The MongoDB settings.</param>
+            <param name="mongoClient">The MongoDB client.</param>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.CreateRentalAsync(challange_bikeRental.Models.RentedBikes)">
+            <summary>
+            Creates a new rental record in the rented motorcycles collection.
+            </summary>
+            <param name="rental">The rental information to insert.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.UpdateUserWithRentedMotorcycleAsync(System.String,System.String)">
+            <summary>
+            Updates the user with the specified ID to associate them with a rented motorcycle.
+            </summary>
+            <param name="entregadorId">The ID of the user (entregador) to update.</param>
+            <param name="motoId">The ID of the rented motorcycle to associate with the user.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.GetByIdAsync(System.String)">
+            <summary>
+            Retrieves a rented bike by its unique identifier.
+            </summary>
+            <param name="identificador">The unique identifier of the rented bike.</param>
+            <returns>The rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.GetRentedByMotocycleAsync(System.String)">
+            <summary>
+            Retrieves a rented bike by the motorcycle's unique identifier.
+            </summary>
+            <param name="motocycleId">The unique identifier of the motorcycle.</param>
+            <returns>The rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.UpdateRentedAsync(challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto)">
+            <summary>
+            Updates the rented motorcycle record with the specified information.
+            </summary>
+            <param name="rental">The updated rental information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Repositories.RentedMotorcycles.RentedMotorcycleRepository.GetBikeByPlacaAsync(System.String)">
+            <summary>
+            Retrieves a rented bike by the motorcycle's license plate identifier.
+            </summary>
+            <param name="motocycleId">The unique identifier (license plate) of the motorcycle.</param>
+            <returns>The rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Services.Bikes.BikeService">
+            <summary>
+            Provides services for managing bikes, including CRUD operations and integration with RabbitMQ.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.#ctor(challange_bikeRental.Repositories.Bikes.IBikeRepository,challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository,challange_bikeRental.Utils.Producers.RabbitMqProducer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Services.Bikes.BikeService"/> class.
+            </summary>
+            <param name="bikeRepository">The bike repository.</param>
+            <param name="rentedMotorcycleRepository">The rented motorcycle repository.</param>
+            <param name="rabbitMqProducer">The RabbitMQ producer for event publishing.</param>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.GetAllBikesAsync">
+            <summary>
+            Retrieves all bikes asynchronously.
+            </summary>
+            <returns>A list of all bikes.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.GetBikeByIdAsync(System.String)">
+            <summary>
+            Retrieves a bike by its identifier asynchronously.
+            </summary>
+            <param name="identificador">The unique identifier of the bike.</param>
+            <returns>The bike with the specified identifier, or null if not found.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.GetBikeByPlacaAsync(System.String)">
+            <summary>
+            Retrieves a bike by its license plate asynchronously.
+            </summary>
+            <param name="placa">The license plate of the bike.</param>
+            <returns>The bike with the specified license plate, or null if not found.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.AddBikeAsync(challange_bikeRental.Models.Bike)">
+            <summary>
+            Adds a new bike asynchronously and publishes an event to RabbitMQ.
+            </summary>
+            <param name="bike">The bike to add.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.UpdatePlacaAsync(System.String,System.String)">
+            <summary>
+            Updates the license plate of a bike asynchronously.
+            </summary>
+            <param name="identificador">The unique identifier of the bike.</param>
+            <param name="novaPlaca">The new license plate to assign to the bike.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.Bikes.BikeService.DeleteBikeAsync(System.String)">
+            <summary>
+            Deletes a bike asynchronously if it is not associated with an active rental contract.
+            </summary>
+            <param name="identificador">The unique identifier of the bike to delete.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the bike is associated with an active rental contract.</exception>
+        </member>
+        <member name="T:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService">
+            <summary>
+            Provides services for managing delivery users, including CRUD operations and CNH image handling.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.#ctor(challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService"/> class with the specified delivery user repository.
+            </summary>
+            <param name="deliveryUserRepository">The repository used for delivery user operations.</param>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.GetAllUsersAsync">
+            <summary>
+            Retrieves all delivery users asynchronously.
+            </summary>
+            <returns>A list of all users.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.GetUserByIdAsync(System.String)">
+            <summary>
+            Retrieves a user by their unique identifier.
+            </summary>
+            <param name="identificador">The unique identifier of the user to retrieve.</param>
+            <returns>The user with the specified identifier, or null if not found.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.GetUserByCnhAsync(System.String)">
+            <summary>
+            Retrieves a user by their CNH (driver's license number).
+            </summary>
+            <param name="cnh">The CNH of the user to retrieve.</param>
+            <returns>The user with the specified CNH, or null if not found.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.GetUserByCnpjAsync(System.String)">
+            <summary>
+            Retrieves a user by their CNPJ (Cadastro Nacional da Pessoa Jurídica).
+            </summary>
+            <param name="cnpj">The CNPJ of the user to retrieve.</param>
+            <returns>The user with the specified CNPJ, or null if not found.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.CreateUserAsync(challange_bikeRental.Models.User)">
+            <summary>
+            Creates a new delivery user in the repository.
+            </summary>
+            <param name="user">The user entity to create.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.UpdateUserAsync(challange_bikeRental.Models.DTOs.UpdateCnhDto)">
+            <summary>
+            Updates the user's CNH (driver's license image) using the provided DTO.
+            </summary>
+            <param name="updateDto">DTO containing the user ID and the new license image in base64 format.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.DeliveryUsers.DeliveryUserService.UpdateCnhAsync(challange_bikeRental.Models.DTOs.UpdateCnhDto)">
+            <summary>
+            Updates the CNH (driver's license image) for a delivery user.
+            </summary>
+            <param name="updateDto">DTO containing the user ID and the new license image in base64 format.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService">
+            <summary>
+            Service class for handling rented motorcycle operations.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService.#ctor(challange_bikeRental.Repositories.RentedMotorcycles.IRentedMotorcycleRepository,challange_bikeRental.Repositories.DeliveryUser.IDeliveryUserRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService"/> class.
+            </summary>
+            <param name="rentedMotorcycleRepository">The repository for rented motorcycles.</param>
+            <param name="deliveryUserRepository">The repository for delivery users.</param>
+        </member>
+        <member name="M:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService.CreateRentalAsync(challange_bikeRental.Models.RentedBikes)">
+            <summary>
+            Creates a new rental for a motorcycle.
+            </summary>
+            <param name="rental">The rental information to create.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService.GetBikeByIdAsync(System.String)">
+            <summary>
+            Retrieves a rented bike by its identifier.
+            </summary>
+            <param name="identificador">The identifier of the rented bike.</param>
+            <returns>The rented bike if found; otherwise, null.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Services.RentedMotorcycles.RentedMotorcycleService.UpdateRentedAsync(challange_bikeRental.Models.DTOs.UpdateRentedMotocycleDto)">
+            <summary>
+            Updates the information of a rented motorcycle.
+            </summary>
+            <param name="updateDto">The DTO containing updated rental information.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Utils.Attributes.RentalPlan">
+            <summary>
+            Enum representing the available rental plans and their daily costs.
+            </summary>
+        </member>
+        <member name="F:challange_bikeRental.Utils.Attributes.RentalPlan.SevenDays">
+            <summary>
+            7 dias com R$30,00 por dia
+            </summary>
+        </member>
+        <member name="F:challange_bikeRental.Utils.Attributes.RentalPlan.FifteenDays">
+            <summary>
+            15 dias com R$28,00 por dia
+            </summary>
+        </member>
+        <member name="F:challange_bikeRental.Utils.Attributes.RentalPlan.ThirtyDays">
+            <summary>
+            30 dias com R$22,00 por dia
+            </summary>
+        </member>
+        <member name="F:challange_bikeRental.Utils.Attributes.RentalPlan.FortyFiveDays">
+            <summary>
+            45 dias com R$20,00 por dia
+            </summary>
+        </member>
+        <member name="F:challange_bikeRental.Utils.Attributes.RentalPlan.FiftyDays">
+            <summary>
+            50 dias com R$18,00 por dia
+            </summary>
+        </member>
+        <member name="T:challange_bikeRental.Utils.Attributes.RentalPlanExtensions">
+            <summary>
+            Provides extension methods for rental plan calculations.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Attributes.RentalPlanExtensions.GetPlanByDays(System.Int32)">
+            <summary>
+            Obtém o plano de locação com base no número de dias.
+            </summary>
+            <param name="days">Número de dias.</param>
+            <returns>Plano de locação correspondente.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Attributes.RentalPlanExtensions.GetTotalCost(System.Int32)">
+            <summary>
+            Calcula o custo total com base no número de dias.
+            </summary>
+            <param name="days">Número de dias.</param>
+            <returns>Custo total em reais.</returns>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Attributes.RentalPlanExtensions.GetDailyCost(System.Int32)">
+            <summary>
+            Obtém o custo diário com base no número de dias.
+            </summary>
+            <param name="days">Número de dias.</param>
+            <returns>Custo diário em reais.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Utils.Attributes.TipoCnhValidationAttribute">
+            <summary>
+            Validation attribute to ensure the CNH type is 'A', 'B', or 'A+B'.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Attributes.TipoCnhValidationAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Determines whether the specified value of CNH type is valid ('A', 'B', or 'A+B').
+            </summary>
+            <param name="value">The value of the CNH type to validate.</param>
+            <param name="validationContext">The context information about the validation operation.</param>
+            <returns>A <see cref="T:System.ComponentModel.DataAnnotations.ValidationResult"/> indicating whether validation succeeded.</returns>
+        </member>
+        <member name="T:challange_bikeRental.Utils.Producers.RabbitMqProducer">
+            <summary>
+            Provides functionality to publish messages to a RabbitMQ queue.
+            </summary>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Producers.RabbitMqProducer.#ctor(Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.Rabbit.RabbitMqSettings})">
+            <summary>
+            Initializes a new instance of the <see cref="T:challange_bikeRental.Utils.Producers.RabbitMqProducer"/> class with the specified RabbitMQ settings.
+            </summary>
+            <param name="options">The RabbitMQ settings options.</param>
+        </member>
+        <member name="M:challange_bikeRental.Utils.Producers.RabbitMqProducer.Publish(System.Object)">
+            <summary>
+            Publishes a message to the configured RabbitMQ queue.
+            </summary>
+            <param name="message">The message object to be published.</param>
+        </member>
+        <member name="T:RabbitMqConsumerHostedService">
+            <summary>
+            Hosted service that consumes messages from a RabbitMQ queue and logs bike creation events.
+            </summary>
+        </member>
+        <member name="M:RabbitMqConsumerHostedService.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{challange_bikeRental.Config.Rabbit.RabbitMqSettings})">
+            <summary>
+            Initializes a new instance of the <see cref="T:RabbitMqConsumerHostedService"/> class.
+            </summary>
+            <param name="serviceProvider">The service provider for dependency injection.</param>
+            <param name="options">The RabbitMQ settings options.</param>
+        </member>
+        <member name="M:RabbitMqConsumerHostedService.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Starts the hosted service and initializes the RabbitMQ connection and channel.
+            </summary>
+            <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous start operation.</returns>
+        </member>
+        <member name="M:RabbitMqConsumerHostedService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the background service to consume messages from the RabbitMQ queue.
+            </summary>
+            <param name="stoppingToken">A token to monitor for cancellation requests.</param>
+            <returns>A task that represents the asynchronous execute operation.</returns>
+        </member>
+        <member name="M:RabbitMqConsumerHostedService.Dispose">
+            <summary>
+            Releases the unmanaged resources used by the service and optionally releases the managed resources.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,16 +1,37 @@
 using System;
 
-namespace challange_bikeRental.Utils
+namespace challange_bikeRental.Utils.Attributes
 {
+    /// <summary>
+    /// Enum representing the available rental plans and their daily costs.
+    /// </summary>
     public enum RentalPlan
     {
+        /// <summary>
+        /// 7 dias com R$30,00 por dia
+        /// </summary>
         SevenDays = 30,   // 7 dias com R$30,00 por dia
+        /// <summary>
+        /// 15 dias com R$28,00 por dia
+        /// </summary>
         FifteenDays = 28, // 15 dias com R$28,00 por dia
+        /// <summary>
+        /// 30 dias com R$22,00 por dia
+        /// </summary>
         ThirtyDays = 22,  // 30 dias com R$22,00 por dia
+        /// <summary>
+        /// 45 dias com R$20,00 por dia
+        /// </summary>
         FortyFiveDays = 20, // 45 dias com R$20,00 por dia
+        /// <summary>
+        /// 50 dias com R$18,00 por dia
+        /// </summary>
         FiftyDays = 18    // 50 dias com R$18,00 por dia
     }
 
+    /// <summary>
+    /// Provides extension methods for rental plan calculations.
+    /// </summary>
     public static class RentalPlanExtensions
     {
         /// <summary>

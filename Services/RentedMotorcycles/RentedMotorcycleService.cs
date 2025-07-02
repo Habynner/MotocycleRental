@@ -2,21 +2,34 @@ using challange_bikeRental.Models;
 using challange_bikeRental.Models.DTOs;
 using challange_bikeRental.Repositories.DeliveryUser;
 using challange_bikeRental.Repositories.RentedMotorcycles;
-using challange_bikeRental.Utils;
+using challange_bikeRental.Utils.Attributes;
 
 namespace challange_bikeRental.Services.RentedMotorcycles
 {
+    /// <summary>
+    /// Service class for handling rented motorcycle operations.
+    /// </summary>
     public class RentedMotorcycleService
     {
         private readonly IRentedMotorcycleRepository _rentedMotorcycleRepository;
         private readonly IDeliveryUserRepository _deliveryUserRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentedMotorcycleService"/> class.
+        /// </summary>
+        /// <param name="rentedMotorcycleRepository">The repository for rented motorcycles.</param>
+        /// <param name="deliveryUserRepository">The repository for delivery users.</param>
         public RentedMotorcycleService(IRentedMotorcycleRepository rentedMotorcycleRepository, IDeliveryUserRepository deliveryUserRepository)
         {
             _rentedMotorcycleRepository = rentedMotorcycleRepository;
             _deliveryUserRepository = deliveryUserRepository;
         }
 
+        /// <summary>
+        /// Creates a new rental for a motorcycle.
+        /// </summary>
+        /// <param name="rental">The rental information to create.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         public async Task CreateRentalAsync(RentedBikes rental)
         {
             // Validação: O início da locação deve ser o primeiro dia após a data de criação
@@ -44,10 +57,25 @@ namespace challange_bikeRental.Services.RentedMotorcycles
             // Atualiza o usuário com a moto alugada
             await _rentedMotorcycleRepository.UpdateUserWithRentedMotorcycleAsync(rental.DeliveryUser, rental.MotocycleId);
         }
+        /// <summary>
+        /// Retrieves a rented bike by its identifier.
+        /// </summary>
+        /// <param name="identificador">The identifier of the rented bike.</param>
+        /// <returns>The rented bike if found; otherwise, null.</returns>
         public async Task<RentedBikes?> GetBikeByIdAsync(string identificador) => await _rentedMotorcycleRepository.GetByIdAsync(identificador);
 
+        /// <summary>
+        /// Updates the information of a rented motorcycle.
+        /// </summary>
+        /// <param name="updateDto">The DTO containing updated rental information.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         public async Task UpdateRentedAsync(UpdateRentedMotocycleDto updateDto)
         {
+            if (string.IsNullOrEmpty(updateDto.Id))
+            {
+                throw new ArgumentNullException(nameof(updateDto.Id), "O identificador do aluguel não pode ser nulo.");
+            }
+
             var rental = await _rentedMotorcycleRepository.GetByIdAsync(updateDto.Id);
             if (rental == null)
             {
